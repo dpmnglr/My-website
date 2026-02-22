@@ -1,0 +1,668 @@
+[
+  {
+    "id": "tv1",
+    "category": "TV",
+    "modelName": "43U8100FULXL",
+    "basePrice": 27408,
+    "mrp": 27408,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv2",
+    "category": "TV",
+    "modelName": "43U8400FULXL",
+    "basePrice": 28865,
+    "mrp": 28865,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv3",
+    "category": "TV",
+    "modelName": "43U8600FULXL",
+    "basePrice": 29727,
+    "mrp": 29727,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv4",
+    "category": "TV",
+    "modelName": "50U8100FULXL",
+    "basePrice": 34017,
+    "mrp": 34017,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv5",
+    "category": "TV",
+    "modelName": "50U8400FULXL",
+    "basePrice": 36425,
+    "mrp": 36425,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv6",
+    "category": "TV",
+    "modelName": "50U8600FULXL",
+    "basePrice": 37227,
+    "mrp": 37227,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv7",
+    "category": "TV",
+    "modelName": "55U8100FULXL",
+    "basePrice": 39628,
+    "mrp": 39628,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv8",
+    "category": "TV",
+    "modelName": "55U8400FULXL",
+    "basePrice": 42103,
+    "mrp": 42103,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv9",
+    "category": "TV",
+    "modelName": "55U8600FULXL",
+    "basePrice": 42864,
+    "mrp": 42864,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv10",
+    "category": "TV",
+    "modelName": "55Q8FAAULXL",
+    "basePrice": 54201,
+    "mrp": 54201,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv11",
+    "category": "TV",
+    "modelName": "55QN70FAULXL",
+    "basePrice": 68100,
+    "mrp": 68100,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv12",
+    "category": "TV",
+    "modelName": "55QN85FAULXL",
+    "basePrice": 81302,
+    "mrp": 81302,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv13",
+    "category": "TV",
+    "modelName": "55QN90FAULXL",
+    "basePrice": 102759,
+    "mrp": 102759,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv14",
+    "category": "TV",
+    "modelName": "65U8100FULXL",
+    "basePrice": 55446,
+    "mrp": 55446,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv15",
+    "category": "TV",
+    "modelName": "65U8400FULXL",
+    "basePrice": 59466,
+    "mrp": 59466,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv16",
+    "category": "TV",
+    "modelName": "65U8600FULXL",
+    "basePrice": 60265,
+    "mrp": 60265,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv17",
+    "category": "TV",
+    "modelName": "65Q8FAAULXL",
+    "basePrice": 81002,
+    "mrp": 81002,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv18",
+    "category": "TV",
+    "modelName": "65QN85FAULXL",
+    "basePrice": 130797,
+    "mrp": 130797,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv19",
+    "category": "TV",
+    "modelName": "65QN70FAULXL",
+    "basePrice": 94702,
+    "mrp": 94702,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv20",
+    "category": "TV",
+    "modelName": "65QN80FAULXL",
+    "basePrice": 118547,
+    "mrp": 118547,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv21",
+    "category": "TV",
+    "modelName": "65QN90FAULXL",
+    "basePrice": 145654,
+    "mrp": 145654,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv22",
+    "category": "TV",
+    "modelName": "65QN900FUXXL",
+    "basePrice": 207467,
+    "mrp": 207467,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv23",
+    "category": "TV",
+    "modelName": "75U8000FULXL",
+    "basePrice": 77977,
+    "mrp": 77977,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv24",
+    "category": "TV",
+    "modelName": "75U8000FUXXL",
+    "basePrice": 77977,
+    "mrp": 77977,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv25",
+    "category": "TV",
+    "modelName": "75U8300FUXXL",
+    "basePrice": 83020,
+    "mrp": 83020,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv26",
+    "category": "TV",
+    "modelName": "75U8300FULXL",
+    "basePrice": 83020,
+    "mrp": 83020,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv27",
+    "category": "TV",
+    "modelName": "75U8500FULXL",
+    "basePrice": 87702,
+    "mrp": 87702,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv28",
+    "category": "TV",
+    "modelName": "75U8500FUXXL",
+    "basePrice": 87702,
+    "mrp": 87702,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv29",
+    "category": "TV",
+    "modelName": "65Q7FAAULXL",
+    "basePrice": 71407,
+    "mrp": 71407,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "tv30",
+    "category": "TV",
+    "modelName": "55Q7FAAULXL",
+    "basePrice": 48455,
+    "mrp": 48455,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm1",
+    "category": "Washing Machine",
+    "modelName": "WA80F08B3BTL",
+    "basePrice": 24253,
+    "mrp": 24253,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm2",
+    "category": "Washing Machine",
+    "modelName": "WA80F08E2BTL",
+    "basePrice": 20841,
+    "mrp": 20841,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm3",
+    "category": "Washing Machine",
+    "modelName": "WA80F08E2CTL",
+    "basePrice": 20841,
+    "mrp": 20841,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm4",
+    "category": "Washing Machine",
+    "modelName": "WA80F08H2BTL",
+    "basePrice": 23253,
+    "mrp": 23253,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm5",
+    "category": "Washing Machine",
+    "modelName": "WA80F08S2BTL",
+    "basePrice": 23819,
+    "mrp": 23819,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm6",
+    "category": "Washing Machine",
+    "modelName": "WA80F08S2CTL",
+    "basePrice": 21266,
+    "mrp": 21266,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm7",
+    "category": "Washing Machine",
+    "modelName": "WA80F10B3BTL",
+    "basePrice": 28436,
+    "mrp": 28436,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm8",
+    "category": "Washing Machine",
+    "modelName": "WA80F10B3NTL",
+    "basePrice": 28018,
+    "mrp": 28018,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm9",
+    "category": "Washing Machine",
+    "modelName": "WA80F10E2CTL",
+    "basePrice": 23835,
+    "mrp": 23835,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm10",
+    "category": "Washing Machine",
+    "modelName": "WA80F10S2BTL",
+    "basePrice": 27599,
+    "mrp": 27599,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm11",
+    "category": "Washing Machine",
+    "modelName": "WA80F10S2CTL",
+    "basePrice": 24755,
+    "mrp": 24755,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm12",
+    "category": "Washing Machine",
+    "modelName": "WA80F12S5CTL",
+    "basePrice": 34351,
+    "mrp": 34351,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "wm13",
+    "category": "Washing Machine",
+    "modelName": "WA80F14B6BTL",
+    "basePrice": 40483,
+    "mrp": 40483,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref1",
+    "category": "Refrigerator",
+    "modelName": "RT34HG5A42BXHL",
+    "basePrice": 39381,
+    "mrp": 39381,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref2",
+    "category": "Refrigerator",
+    "modelName": "RT34HG5A42S8HL",
+    "basePrice": 38467,
+    "mrp": 38467,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref3",
+    "category": "Refrigerator",
+    "modelName": "RT34HG5A43B1HL",
+    "basePrice": 41459,
+    "mrp": 41459,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref4",
+    "category": "Refrigerator",
+    "modelName": "RT40H28U2FHL",
+    "basePrice": 28498,
+    "mrp": 28498,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref5",
+    "category": "Refrigerator",
+    "modelName": "RT40H28U2PBHL",
+    "basePrice": 28832,
+    "mrp": 28832,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref6",
+    "category": "Refrigerator",
+    "modelName": "RT40H28U2PHL",
+    "basePrice": 27901,
+    "mrp": 27901,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref7",
+    "category": "Refrigerator",
+    "modelName": "RT40H28W1QNL",
+    "basePrice": 24835,
+    "mrp": 24835,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref8",
+    "category": "Refrigerator",
+    "modelName": "RT40H28W2PNL",
+    "basePrice": 25887,
+    "mrp": 25887,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref9",
+    "category": "Refrigerator",
+    "modelName": "RT40H28W3KHL",
+    "basePrice": 28660,
+    "mrp": 28660,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref10",
+    "category": "Refrigerator",
+    "modelName": "RT40H30U2BBHL",
+    "basePrice": 32027,
+    "mrp": 32027,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref11",
+    "category": "Refrigerator",
+    "modelName": "RT40H30U2BRHL",
+    "basePrice": 32027,
+    "mrp": 32027,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref12",
+    "category": "Refrigerator",
+    "modelName": "RT40H30U2KHL",
+    "basePrice": 31336,
+    "mrp": 31336,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref13",
+    "category": "Refrigerator",
+    "modelName": "RT40H30U2PHL",
+    "basePrice": 30547,
+    "mrp": 30547,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref14",
+    "category": "Refrigerator",
+    "modelName": "RT40H30U3PHL",
+    "basePrice": 33063,
+    "mrp": 33063,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref15",
+    "category": "Refrigerator",
+    "modelName": "RT40H30W2KHL",
+    "basePrice": 28832,
+    "mrp": 28832,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref16",
+    "category": "Refrigerator",
+    "modelName": "RT40H30W2PHL",
+    "basePrice": 28242,
+    "mrp": 28242,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref17",
+    "category": "Refrigerator",
+    "modelName": "RT41HB6A4222HL",
+    "basePrice": 48771,
+    "mrp": 48771,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref18",
+    "category": "Refrigerator",
+    "modelName": "RT41HG6A22S8HL",
+    "basePrice": 45697,
+    "mrp": 45697,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref19",
+    "category": "Refrigerator",
+    "modelName": "RT41HG6A42B1HL",
+    "basePrice": 46278,
+    "mrp": 46278,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref20",
+    "category": "Refrigerator",
+    "modelName": "RT41HG6C42S8HL",
+    "basePrice": 44035,
+    "mrp": 44035,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref21",
+    "category": "Refrigerator",
+    "modelName": "RT45HB6A4222HL",
+    "basePrice": 51763,
+    "mrp": 51763,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref22",
+    "category": "Refrigerator",
+    "modelName": "RT45HG6A22SLHL",
+    "basePrice": 48854,
+    "mrp": 48854,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref23",
+    "category": "Refrigerator",
+    "modelName": "RT45HG6A43BXHL",
+    "basePrice": 50932,
+    "mrp": 50932,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref24",
+    "category": "Refrigerator",
+    "modelName": "RT56HG7A61B1TL",
+    "basePrice": 69008,
+    "mrp": 69008,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref25",
+    "category": "Refrigerator",
+    "modelName": "RT56HG7A61SLTL",
+    "basePrice": 67731,
+    "mrp": 67731,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref26",
+    "category": "Refrigerator",
+    "modelName": "RT80H28U2FHL",
+    "basePrice": 29955,
+    "mrp": 29955,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref27",
+    "category": "Refrigerator",
+    "modelName": "RT80H30U2THL",
+    "basePrice": 32632,
+    "mrp": 32632,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref28",
+    "category": "Refrigerator",
+    "modelName": "RT80H51C2BHL",
+    "basePrice": 57519,
+    "mrp": 57519,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref29",
+    "category": "Refrigerator",
+    "modelName": "RT80H51C2FHL",
+    "basePrice": 54966,
+    "mrp": 54966,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref30",
+    "category": "Refrigerator",
+    "modelName": "RT80H51C2SHL",
+    "basePrice": 54115,
+    "mrp": 54115,
+    "discount": 0,
+    "addedAt": 1771779796867
+  },
+  {
+    "id": "ref31",
+    "category": "Refrigerator",
+    "modelName": "RT80H51C3BHL",
+    "basePrice": 60072,
+    "mrp": 60072,
+    "discount": 0,
+    "addedAt": 1771779796867
+  }
+]
