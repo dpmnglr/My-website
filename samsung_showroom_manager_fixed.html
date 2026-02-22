@@ -1,28 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samsung Showroom Manager</title>
-</head>
-<body>
-    <h1>Catalog</h1>
-    <div id="CATALOGUE_DATA">
-        <div class="product">
-            <h2>Product Name 1</h2>
-            <p>Base Price: $0</p>
-            <p>MRP: $0</p>
-        </div>
-        <div class="product">
-            <h2>Product Name 2</h2>
-            <p>Base Price: $0</p>
-            <p>MRP: $0</p>
-        </div>
-        <!-- More products -->
-    </div>
-    <div id="Initial_Data">
-        <p>Base Price: $0</p>
-        <p>MRP: $0</p>
-    </div>
-</body>
-</html>
+<script>
+// Assuming CATALOGUE_DATA and Initial_Data are declared here
+
+// Update CATALOGUE_DATA
+for(let item of CATALOGUE_DATA) {
+    if(item.mrp) {
+        item.mrp = 0;
+    }
+}
+
+// Update Initial_Data
+for(let initialItem of Initial_Data) {
+    if(initialItem.mrp) {
+        initialItem.mrp = 0;
+    }
+}
+
+</script>
