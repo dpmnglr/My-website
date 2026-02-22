@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsung Showroom Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.3);
+            --surface: rgba(15, 23, 42, 0.8);
+            --surface-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(76, 29, 149, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(15, 23, 42, 0.5) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+        }
+        
+        /* Glass Cards - Dark Mode */
+        .bg-white, .bg-white\/90, section.bg-white {
+            background: var(--surface) !important;
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid var(--surface-border) !important;
+            box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.5) !important;
+            color: var(--text-main) !important;
+        }
+
+        .border-slate-200, .border-slate-100, .border-slate-200\/60, .border-slate-200\/80 {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .bg-slate-50\/50, .bg-slate-50\/80, .bg-slate-100 {
+            background: rgba(255, 255, 255, 0.03) !important;
+        }
+
+        /* Header Enhancement */
+        .glass-header {
+            background: rgba(15, 23, 42, 0.8) !important;
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+        }
+        
+        .glass-header h1 {
+            background: linear-gradient(135deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+        }
+        
+        .glass-header p {
+            color: var(--text-muted) !important;
+        }
+
+        /* Inputs & Selects */
+        input, select {
+            background: rgba(30, 41, 59, 0.5) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            box-shadow: none !important;
+        }
+        input:focus, select:focus {
+            background: rgba(30, 41, 59, 0.8) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 4px var(--primary-glow) !important;
+        }
+        ::placeholder { color: #64748b !important; }
+
+        /* Buttons */
+        .samsung-blue, .bg-\[\#1428A0\] { 
+            background: linear-gradient(135deg, #4f46e5, #7c3aed) !important; 
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4) !important;
+        }
+        
+        .active-tab {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4) !important;
+        }
+        
+        .inactive-tab {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: var(--text-muted) !important;
+        }
+
+        /* Filter Pills */
+        .cat-pill {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: var(--text-muted) !important;
+        }
+
+        /* Table Aesthetics */
+        table { border-spacing: 0 !important; }
+        thead th { color: var(--text-muted) !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+        tbody tr {
+            background: rgba(30, 41, 59, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+        tbody tr:hover {
+            background: rgba(30, 41, 59, 0.6) !important;
+            border-color: rgba(99, 102, 241, 0.3) !important;
+        }
+        td { color: var(--text-main) !important; border-color: rgba(255,255,255,0.05) !important; }
+
+        /* Text Colors */
+        .text-slate-900, .text-slate-800, .text-slate-700 { color: var(--text-main) !important; }
+        .text-slate-600, .text-slate-500, .text-slate-400 { color: var(--text-muted) !important; }
+        .text-samsung-blue { color: #818cf8 !important; }
+
+        /* Single Line Layout Fix */
+        #product-form {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            gap: 1rem !important;
+            align-items: flex-end !important;
+            padding-bottom: 0.5rem;
+        }
+        #product-form > div {
+            flex: 0 0 auto !important;
+            min-width: 150px !important;
+        }
+        #product-form > div:nth-child(2) { min-width: 250px !important; }
+        #product-form::-webkit-scrollbar { height: 4px; }
+
+        /* Mobile Cards Dark */
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block !important;
+            }
+            thead tr {
+                position: absolute !important;
+                top: -9999px !important;
+                left: -9999px !important;
+            }
+            tbody tr {
+                background: var(--surface) !important;
+                border: 1px solid var(--surface-border) !important;
+                margin-bottom: 1rem !important;
+                border-radius: 0.75rem !important;
+                overflow: hidden !important;
+            }
+            tbody td {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 0.75rem 1rem !important;
+                text-align: right !important;
+                border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+                white-space: normal !important;
+            }
+            tbody td:last-child {
+                border-bottom: none !important;
+            }
+            tbody td::before { 
+                content: attr(data-label) !important;
+                color: var(--text-muted) !important; 
+                text-align: left !important;
+                font-weight: 600 !important;
+                padding-right: 1rem !important;
+            }
+            tbody td[data-label="Model Name"] { color: white !important; }
+            #product-form { flex-direction: column !important; overflow: visible !important; }
+            #product-form > div { width: 100% !important; }
+            
+            .whitespace-nowrap { white-space: normal !important; }
+            td[data-label="Actions"], td.no-print { justify-content: flex-end !important; gap: 0.5rem !important; }
+        }
+
+        /* Modal & Toast Dark */
+        #discount-modal > div:last-child {
+            background: #0f172a !important;
+            color: white !important;
+        }
+        #toast-container > div {
+            background: #1e293b !important;
+            color: white !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+        }
+</style>
+</head>
+<body class="text-slate-900 antialiased min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="glass-header text-white py-4 shadow-xl sticky top-0 z-40 no-print">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="bg-white/10 p-2.5 rounded-xl backdrop-blur-sm border border-white/10 shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 7 5 3-5 3Z"/><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">Samsung Showroom</h1>
+                    <p class="text-blue-100/80 text-xs md:text-sm font-medium tracking-wide">Price & Inventory Manager</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="loadCatalogue()" class="hidden md:flex items-center gap-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-all backdrop-blur-sm border border-white/10 shadow-sm active:scale-95" title="Load all catalogue products">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    Load Catalogue
+                </button>
+                <button onclick="window.print()" class="hidden md:flex items-center gap-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-all backdrop-blur-sm border border-white/10 shadow-sm active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+                    Print List
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 md:px-6 py-6 md:py-8 space-y-6 md:space-y-8 flex-1">
+        <!-- Add Product Toggle Button -->
+        <div class="no-print flex justify-end">
+            <button id="toggle-form-btn" onclick="toggleAddForm()" class="samsung-blue text-white px-5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 shadow-md active:scale-[0.98] transition-all" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                <svg id="toggle-form-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                Add Item
+            </button>
+        </div>
+
+        <!-- Add Product Section (hidden by default) -->
+        <section id="add-product-section" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden no-print transition-all">
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                <h2 class="font-bold flex items-center gap-2 text-slate-800">
+                    <span class="bg-blue-100 text-samsung-blue p-1.5 rounded-md shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                    </span>
+                    Add New Product
+                </h2>
+                <button onclick="toggleAddForm()" class="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="p-5 md:p-6">
+                <form id="product-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 items-end">
+                    <div class="space-y-2 lg:col-span-2">
+                        <label class="text-sm font-medium text-slate-700" style="font-family: 'Plus Jakarta Sans', sans-serif;">Category</label>
+                        <select id="category" required class="w-full rounded-xl border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1428A0]/20 focus:border-[#1428A0] border transition-all cursor-pointer hover:bg-white text-slate-700" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400;">
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="AC">AC</option>
+                            <option value="Washing Machine">Washing Machine</option>
+                            <option value="Refrigerator">Refrigerator</option>
+                            <option value="TV">TV</option>
+                            <option value="Microwave Oven">Microwave Oven</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2 lg:col-span-3">
+                        <label class="text-sm font-medium text-slate-700" style="font-family: 'Plus Jakarta Sans', sans-serif;">Model Name</label>
+                        <input id="model-name" type="text" required placeholder="e.g. QA55LS03BAKXXL" class="w-full rounded-xl border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1428A0]/20 focus:border-[#1428A0] border transition-all hover:bg-white placeholder:text-slate-400 placeholder:font-normal" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400;">
+                    </div>
+                    <div class="space-y-2 lg:col-span-2">
+                        <label class="text-sm font-medium text-slate-700" style="font-family: 'Plus Jakarta Sans', sans-serif;">Base Price (₹)</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold">₹</span>
+                            <input id="base-price" type="number" required min="0" step="0.01" placeholder="0.00" class="w-full rounded-xl border-slate-200 bg-slate-50/50 pl-8 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1428A0]/20 focus:border-[#1428A0] border transition-all hover:bg-white placeholder:text-slate-400 placeholder:font-normal" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400;">
+                        </div>
+                    </div>
+                    <div class="space-y-2 lg:col-span-2">
+                        <label class="text-sm font-medium text-slate-700" style="font-family: 'Plus Jakarta Sans', sans-serif;">MRP (₹)</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold">₹</span>
+                            <input id="mrp-price" type="number" required min="0" step="0.01" placeholder="0.00" class="w-full rounded-xl border-slate-200 bg-slate-50/50 pl-8 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1428A0]/20 focus:border-[#1428A0] border transition-all hover:bg-white placeholder:text-slate-400 placeholder:font-normal" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400;">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-2 lg:col-span-1 mt-4 sm:mt-0">
+                        <button type="submit" class="w-full samsung-blue text-white py-2.5 px-6 rounded-xl hover:bg-[#0f1f80] active:scale-[0.98] transition-all shadow-sm flex justify-center items-center gap-2 border border-[#0f1f80]" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500;">
+                            Add Item
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Controls & Filters -->
+        <div class="flex flex-col gap-3 no-print">
+            <!-- Row 1: Mode toggle + Search -->
+            <div class="flex flex-col sm:flex-row gap-3 items-center justify-between">
+                <div class="flex bg-slate-200/60 p-1.5 rounded-xl border border-slate-200/50 w-full sm:w-auto shadow-inner">
+                    <button id="store-price-btn" class="active-tab flex-1 sm:flex-none px-6 md:px-8 py-2 rounded-lg font-medium transition-all text-sm flex items-center justify-center gap-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+                        Store Price
+                    </button>
+                    <button id="customer-price-btn" class="inactive-tab flex-1 sm:flex-none px-6 md:px-8 py-2 rounded-lg font-medium transition-all text-sm flex items-center justify-center gap-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Customer Price
+                    </button>
+                </div>
+                <div class="relative w-full sm:w-[300px]">
+                    <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </div>
+                    <input id="search-input" type="text" placeholder="Search models..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#1428A0]/20 focus:border-[#1428A0] transition-all placeholder:text-slate-400 placeholder:font-normal shadow-sm">
+                </div>
+            </div>
+            <!-- Row 2: Category pill buttons -->
+            <div class="flex flex-wrap gap-2 items-center">
+                <span class="text-xs font-semibold text-slate-400 mr-0.5" style="font-family: 'Plus Jakarta Sans', sans-serif;">Filter:</span>
+                <button onclick="setCategory('All')" id="cat-All" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold border transition-all" style="background:#1428A0;color:white;border-color:#1428A0;">All</button>
+                <button onclick="setCategory('AC')" id="cat-AC" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:border-[#1428A0] hover:text-[#1428A0] transition-all">AC</button>
+                <button onclick="setCategory('Washing Machine')" id="cat-Washing Machine" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:border-[#1428A0] hover:text-[#1428A0] transition-all">Washing Machine</button>
+                <button onclick="setCategory('Refrigerator')" id="cat-Refrigerator" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:border-[#1428A0] hover:text-[#1428A0] transition-all">Refrigerator</button>
+                <button onclick="setCategory('TV')" id="cat-TV" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:border-[#1428A0] hover:text-[#1428A0] transition-all">TV</button>
+                <button onclick="setCategory('Microwave Oven')" id="cat-Microwave Oven" class="cat-pill px-3 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:border-[#1428A0] hover:text-[#1428A0] transition-all">Microwave Oven</button>
+            </div>
+        </div>
+
+        <!-- Inventory Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden relative">
+            <div class="overflow-x-auto min-h-[350px]">
+                <table class="w-full text-sm text-left whitespace-nowrap" style="border-collapse: collapse;">
+                    <thead class="bg-slate-50/80 border-b border-slate-200/80 font-semibold text-slate-700 text-sm">
+                        <tr id="table-header">
+                            <!-- Headers will be dynamically updated -->
+                        </tr>
+                    </thead>
+                    <tbody id="product-list" class="divide-y divide-slate-100/80 text-slate-900">
+                        <!-- Products will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-[2px] z-10">
+                <div class="flex flex-col items-center justify-center text-center p-8 max-w-sm">
+                    <div class="bg-slate-100 p-5 rounded-full mb-4 shadow-inner">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>
+                    </div>
+                    <p class="text-xl font-bold text-slate-800 mb-2 tracking-tight">No products found</p>
+                    <p class="text-sm text-slate-500 leading-relaxed font-medium">Your inventory is empty or no items match your search. Add a new product to get started.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Discount Modal Overlay -->
+    <div id="discount-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-0 no-print">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" id="modal-backdrop"></div>
+        
+        <!-- Modal Content -->
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 max-w-sm w-full relative z-10 transform transition-all modal-enter">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 tracking-tight">Apply Discount</h3>
+                    <p class="text-sm text-slate-500 font-medium mt-1" id="discount-modal-model" style="font-family: 'Plus Jakarta Sans', sans-serif;">Model Name</p>
+                </div>
+                <button onclick="cancelDiscount()" class="text-slate-400 hover:text-slate-700 bg-slate-50 hover:bg-slate-100 p-2 rounded-xl transition-colors active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-6">
+                <div>
+                    <label class="text-sm font-semibold text-slate-700 block mb-2">Discount Percentage (%)</label>
+                    <div class="relative">
+                        <input id="discount-input" type="number" min="0" max="100" step="0.1" placeholder="e.g. 10" 
+                            class="w-full px-4 py-3.5 border border-slate-200 bg-slate-50/50 rounded-xl text-base font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#1428A0]/20 focus:border-[#1428A0] transition-all pr-10 shadow-sm">
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
+                    </div>
+                    
+                    <!-- Quick discount chips -->
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <button onclick="document.getElementById('discount-input').value='5'" class="text-xs font-bold bg-slate-100 hover:bg-blue-100 text-slate-600 hover:text-samsung-blue px-3 py-1.5 rounded-full transition-colors border border-transparent hover:border-blue-200">5% OFF</button>
+                        <button onclick="document.getElementById('discount-input').value='10'" class="text-xs font-bold bg-slate-100 hover:bg-blue-100 text-slate-600 hover:text-samsung-blue px-3 py-1.5 rounded-full transition-colors border border-transparent hover:border-blue-200">10% OFF</button>
+                        <button onclick="document.getElementById('discount-input').value='15'" class="text-xs font-bold bg-slate-100 hover:bg-blue-100 text-slate-600 hover:text-samsung-blue px-3 py-1.5 rounded-full transition-colors border border-transparent hover:border-blue-200">15% OFF</button>
+                        <button onclick="document.getElementById('discount-input').value='20'" class="text-xs font-bold bg-slate-100 hover:bg-blue-100 text-slate-600 hover:text-samsung-blue px-3 py-1.5 rounded-full transition-colors border border-transparent hover:border-blue-200">20% OFF</button>
+                    </div>
+                </div>
+                
+                <div class="pt-2 flex gap-3">
+                    <button onclick="cancelDiscount()" class="flex-1 px-4 py-3 bg-white border border-slate-200 rounded-xl font-bold text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition-all shadow-sm">
+                        Cancel
+                    </button>
+                    <button onclick="confirmDiscount()" class="flex-1 samsung-blue text-white px-4 py-3 rounded-xl font-bold hover:bg-[#0f1f80] active:scale-[0.98] transition-all shadow-md flex justify-center items-center gap-2 border border-[#0f1f80]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Apply Discount
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex flex-col gap-3 no-print pointer-events-none"></div>
+
+    <script>
+        // State Management — always start fresh with catalogue data
+        let products = [];
+        let currentMode = 'store'; // 'store' or 'customer'
+
+        // DOM Elements
+        const form = document.getElementById('product-form');
+        const productList = document.getElementById('product-list');
+        const emptyState = document.getElementById('empty-state');
+        const searchInput = document.getElementById('search-input');
+        let activeCategory = 'All';
+
+        window.setCategory = function(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-pill').forEach(btn => {
+                btn.style.background = '';
+                btn.style.color = '';
+                btn.style.borderColor = '';
+            });
+            const active = document.getElementById('cat-' + cat);
+            if (active) {
+                active.style.background = '#1428A0';
+                active.style.color = 'white';
+                active.style.borderColor = '#1428A0';
+            }
+            render();
+        };
+        const storePriceBtn = document.getElementById('store-price-btn');
+        const customerPriceBtn = document.getElementById('customer-price-btn');
+        const tableHeader = document.getElementById('table-header');
+        const modal = document.getElementById('discount-modal');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const discountInput = document.getElementById('discount-input');
+        const toastContainer = document.getElementById('toast-container');
+        
+        // Track if we're editing a product
+        let currentEditId = null;
+
+        const CATALOGUE_DATA = [
+                // TV
+                { id: 'tv1', category: 'TV', modelName: '43U8100FULXL', basePrice: 27408, mrp: 27408, discount: 0, addedAt: Date.now() },
+                { id: 'tv2', category: 'TV', modelName: '43U8400FULXL', basePrice: 28865, mrp: 28865, discount: 0, addedAt: Date.now() },
+                { id: 'tv3', category: 'TV', modelName: '43U8600FULXL', basePrice: 29727, mrp: 29727, discount: 0, addedAt: Date.now() },
+                { id: 'tv4', category: 'TV', modelName: '50U8100FULXL', basePrice: 34017, mrp: 34017, discount: 0, addedAt: Date.now() },
+                { id: 'tv5', category: 'TV', modelName: '50U8400FULXL', basePrice: 36425, mrp: 36425, discount: 0, addedAt: Date.now() },
+                { id: 'tv6', category: 'TV', modelName: '50U8600FULXL', basePrice: 37227, mrp: 37227, discount: 0, addedAt: Date.now() },
+                { id: 'tv7', category: 'TV', modelName: '55U8100FULXL', basePrice: 39628, mrp: 39628, discount: 0, addedAt: Date.now() },
+                { id: 'tv8', category: 'TV', modelName: '55U8400FULXL', basePrice: 42103, mrp: 42103, discount: 0, addedAt: Date.now() },
+                { id: 'tv9', category: 'TV', modelName: '55U8600FULXL', basePrice: 42864, mrp: 42864, discount: 0, addedAt: Date.now() },
+                { id: 'tv10', category: 'TV', modelName: '55Q8FAAULXL', basePrice: 54201, mrp: 54201, discount: 0, addedAt: Date.now() },
+                { id: 'tv11', category: 'TV', modelName: '55QN70FAULXL', basePrice: 68100, mrp: 68100, discount: 0, addedAt: Date.now() },
+                { id: 'tv12', category: 'TV', modelName: '55QN85FAULXL', basePrice: 81302, mrp: 81302, discount: 0, addedAt: Date.now() },
+                { id: 'tv13', category: 'TV', modelName: '55QN90FAULXL', basePrice: 102759, mrp: 102759, discount: 0, addedAt: Date.now() },
+                { id: 'tv14', category: 'TV', modelName: '65U8100FULXL', basePrice: 55446, mrp: 55446, discount: 0, addedAt: Date.now() },
+                { id: 'tv15', category: 'TV', modelName: '65U8400FULXL', basePrice: 59466, mrp: 59466, discount: 0, addedAt: Date.now() },
+                { id: 'tv16', category: 'TV', modelName: '65U8600FULXL', basePrice: 60265, mrp: 60265, discount: 0, addedAt: Date.now() },
+                { id: 'tv17', category: 'TV', modelName: '65Q8FAAULXL', basePrice: 81002, mrp: 81002, discount: 0, addedAt: Date.now() },
+                { id: 'tv18', category: 'TV', modelName: '65QN85FAULXL', basePrice: 130797, mrp: 130797, discount: 0, addedAt: Date.now() },
+                { id: 'tv19', category: 'TV', modelName: '65QN70FAULXL', basePrice: 94702, mrp: 94702, discount: 0, addedAt: Date.now() },
+                { id: 'tv20', category: 'TV', modelName: '65QN80FAULXL', basePrice: 118547, mrp: 118547, discount: 0, addedAt: Date.now() },
+                { id: 'tv21', category: 'TV', modelName: '65QN90FAULXL', basePrice: 145654, mrp: 145654, discount: 0, addedAt: Date.now() },
+                { id: 'tv22', category: 'TV', modelName: '65QN900FUXXL', basePrice: 207467, mrp: 207467, discount: 0, addedAt: Date.now() },
+                { id: 'tv23', category: 'TV', modelName: '75U8000FULXL', basePrice: 77977, mrp: 77977, discount: 0, addedAt: Date.now() },
+                { id: 'tv24', category: 'TV', modelName: '75U8000FUXXL', basePrice: 77977, mrp: 77977, discount: 0, addedAt: Date.now() },
+                { id: 'tv25', category: 'TV', modelName: '75U8300FUXXL', basePrice: 83020, mrp: 83020, discount: 0, addedAt: Date.now() },
+                { id: 'tv26', category: 'TV', modelName: '75U8300FULXL', basePrice: 83020, mrp: 83020, discount: 0, addedAt: Date.now() },
+                { id: 'tv27', category: 'TV', modelName: '75U8500FULXL', basePrice: 87702, mrp: 87702, discount: 0, addedAt: Date.now() },
+                { id: 'tv28', category: 'TV', modelName: '75U8500FUXXL', basePrice: 87702, mrp: 87702, discount: 0, addedAt: Date.now() },
+                { id: 'tv29', category: 'TV', modelName: '65Q7FAAULXL', basePrice: 71407, mrp: 71407, discount: 0, addedAt: Date.now() },
+                { id: 'tv30', category: 'TV', modelName: '55Q7FAAULXL', basePrice: 48455, mrp: 48455, discount: 0, addedAt: Date.now() },
+                // Washing Machine
+                { id: 'wm1', category: 'Washing Machine', modelName: 'WA80F08B3BTL', basePrice: 24253, mrp: 24253, discount: 0, addedAt: Date.now() },
+                { id: 'wm2', category: 'Washing Machine', modelName: 'WA80F08E2BTL', basePrice: 20841, mrp: 20841, discount: 0, addedAt: Date.now() },
+                { id: 'wm3', category: 'Washing Machine', modelName: 'WA80F08E2CTL', basePrice: 20841, mrp: 20841, discount: 0, addedAt: Date.now() },
+                { id: 'wm4', category: 'Washing Machine', modelName: 'WA80F08H2BTL', basePrice: 23253, mrp: 23253, discount: 0, addedAt: Date.now() },
+                { id: 'wm5', category: 'Washing Machine', modelName: 'WA80F08S2BTL', basePrice: 23819, mrp: 23819, discount: 0, addedAt: Date.now() },
+                { id: 'wm6', category: 'Washing Machine', modelName: 'WA80F08S2CTL', basePrice: 21266, mrp: 21266, discount: 0, addedAt: Date.now() },
+                { id: 'wm7', category: 'Washing Machine', modelName: 'WA80F10B3BTL', basePrice: 28436, mrp: 28436, discount: 0, addedAt: Date.now() },
+                { id: 'wm8', category: 'Washing Machine', modelName: 'WA80F10B3NTL', basePrice: 28018, mrp: 28018, discount: 0, addedAt: Date.now() },
+                { id: 'wm9', category: 'Washing Machine', modelName: 'WA80F10E2CTL', basePrice: 23835, mrp: 23835, discount: 0, addedAt: Date.now() },
+                { id: 'wm10', category: 'Washing Machine', modelName: 'WA80F10S2BTL', basePrice: 27599, mrp: 27599, discount: 0, addedAt: Date.now() },
+                { id: 'wm11', category: 'Washing Machine', modelName: 'WA80F10S2CTL', basePrice: 24755, mrp: 24755, discount: 0, addedAt: Date.now() },
+                { id: 'wm12', category: 'Washing Machine', modelName: 'WA80F12S5CTL', basePrice: 34351, mrp: 34351, discount: 0, addedAt: Date.now() },
+                { id: 'wm13', category: 'Washing Machine', modelName: 'WA80F14B6BTL', basePrice: 40483, mrp: 40483, discount: 0, addedAt: Date.now() },
+                // Refrigerator
+                { id: 'ref1', category: 'Refrigerator', modelName: 'RT34HG5A42BXHL', basePrice: 39381, mrp: 39381, discount: 0, addedAt: Date.now() },
+                { id: 'ref2', category: 'Refrigerator', modelName: 'RT34HG5A42S8HL', basePrice: 38467, mrp: 38467, discount: 0, addedAt: Date.now() },
+                { id: 'ref3', category: 'Refrigerator', modelName: 'RT34HG5A43B1HL', basePrice: 41459, mrp: 41459, discount: 0, addedAt: Date.now() },
+                { id: 'ref4', category: 'Refrigerator', modelName: 'RT40H28U2FHL', basePrice: 28498, mrp: 28498, discount: 0, addedAt: Date.now() },
+                { id: 'ref5', category: 'Refrigerator', modelName: 'RT40H28U2PBHL', basePrice: 28832, mrp: 28832, discount: 0, addedAt: Date.now() },
+                { id: 'ref6', category: 'Refrigerator', modelName: 'RT40H28U2PHL', basePrice: 27901, mrp: 27901, discount: 0, addedAt: Date.now() },
+                { id: 'ref7', category: 'Refrigerator', modelName: 'RT40H28W1QNL', basePrice: 24835, mrp: 24835, discount: 0, addedAt: Date.now() },
+                { id: 'ref8', category: 'Refrigerator', modelName: 'RT40H28W2PNL', basePrice: 25887, mrp: 25887, discount: 0, addedAt: Date.now() },
+                { id: 'ref9', category: 'Refrigerator', modelName: 'RT40H28W3KHL', basePrice: 28660, mrp: 28660, discount: 0, addedAt: Date.now() },
+                { id: 'ref10', category: 'Refrigerator', modelName: 'RT40H30U2BBHL', basePrice: 32027, mrp: 32027, discount: 0, addedAt: Date.now() },
+                { id: 'ref11', category: 'Refrigerator', modelName: 'RT40H30U2BRHL', basePrice: 32027, mrp: 32027, discount: 0, addedAt: Date.now() },
+                { id: 'ref12', category: 'Refrigerator', modelName: 'RT40H30U2KHL', basePrice: 31336, mrp: 31336, discount: 0, addedAt: Date.now() },
+                { id: 'ref13', category: 'Refrigerator', modelName: 'RT40H30U2PHL', basePrice: 30547, mrp: 30547, discount: 0, addedAt: Date.now() },
+                { id: 'ref14', category: 'Refrigerator', modelName: 'RT40H30U3PHL', basePrice: 33063, mrp: 33063, discount: 0, addedAt: Date.now() },
+                { id: 'ref15', category: 'Refrigerator', modelName: 'RT40H30W2KHL', basePrice: 28832, mrp: 28832, discount: 0, addedAt: Date.now() },
+                { id: 'ref16', category: 'Refrigerator', modelName: 'RT40H30W2PHL', basePrice: 28242, mrp: 28242, discount: 0, addedAt: Date.now() },
+                { id: 'ref17', category: 'Refrigerator', modelName: 'RT41HB6A4222HL', basePrice: 48771, mrp: 48771, discount: 0, addedAt: Date.now() },
+                { id: 'ref18', category: 'Refrigerator', modelName: 'RT41HG6A22S8HL', basePrice: 45697, mrp: 45697, discount: 0, addedAt: Date.now() },
+                { id: 'ref19', category: 'Refrigerator', modelName: 'RT41HG6A42B1HL', basePrice: 46278, mrp: 46278, discount: 0, addedAt: Date.now() },
+                { id: 'ref20', category: 'Refrigerator', modelName: 'RT41HG6C42S8HL', basePrice: 44035, mrp: 44035, discount: 0, addedAt: Date.now() },
+                { id: 'ref21', category: 'Refrigerator', modelName: 'RT45HB6A4222HL', basePrice: 51763, mrp: 51763, discount: 0, addedAt: Date.now() },
+                { id: 'ref22', category: 'Refrigerator', modelName: 'RT45HG6A22SLHL', basePrice: 48854, mrp: 48854, discount: 0, addedAt: Date.now() },
+                { id: 'ref23', category: 'Refrigerator', modelName: 'RT45HG6A43BXHL', basePrice: 50932, mrp: 50932, discount: 0, addedAt: Date.now() },
+                { id: 'ref24', category: 'Refrigerator', modelName: 'RT56HG7A61B1TL', basePrice: 69008, mrp: 69008, discount: 0, addedAt: Date.now() },
+                { id: 'ref25', category: 'Refrigerator', modelName: 'RT56HG7A61SLTL', basePrice: 67731, mrp: 67731, discount: 0, addedAt: Date.now() },
+                { id: 'ref26', category: 'Refrigerator', modelName: 'RT80H28U2FHL', basePrice: 29955, mrp: 29955, discount: 0, addedAt: Date.now() },
+                { id: 'ref27', category: 'Refrigerator', modelName: 'RT80H30U2THL', basePrice: 32632, mrp: 32632, discount: 0, addedAt: Date.now() },
+                { id: 'ref28', category: 'Refrigerator', modelName: 'RT80H51C2BHL', basePrice: 57519, mrp: 57519, discount: 0, addedAt: Date.now() },
+                { id: 'ref29', category: 'Refrigerator', modelName: 'RT80H51C2FHL', basePrice: 54966, mrp: 54966, discount: 0, addedAt: Date.now() },
+                { id: 'ref30', category: 'Refrigerator', modelName: 'RT80H51C2SHL', basePrice: 54115, mrp: 54115, discount: 0, addedAt: Date.now() },
+                { id: 'ref31', category: 'Refrigerator', modelName: 'RT80H51C3BHL', basePrice: 60072, mrp: 60072, discount: 0, addedAt: Date.now() },
+        ];
+
+        window.loadCatalogue = function() {
+            if (confirm('This will replace all current data with the catalogue products (74 models). Any custom products or discounts will be lost. Continue?')) {
+                products = JSON.parse(JSON.stringify(CATALOGUE_DATA));
+                localStorage.setItem('samsung-products', JSON.stringify(products));
+                render();
+                showToast('Catalogue loaded — 74 products added!');
+            }
+        };
+
+        // Initial Data — always load catalogue
+        products = [
+                // TV
+                { id: 'tv1', category: 'TV', modelName: '43U8100FULXL', basePrice: 27408, mrp: 27408, discount: 0, addedAt: Date.now() },
+                { id: 'tv2', category: 'TV', modelName: '43U8400FULXL', basePrice: 28865, mrp: 28865, discount: 0, addedAt: Date.now() },
+                { id: 'tv3', category: 'TV', modelName: '43U8600FULXL', basePrice: 29727, mrp: 29727, discount: 0, addedAt: Date.now() },
+                { id: 'tv4', category: 'TV', modelName: '50U8100FULXL', basePrice: 34017, mrp: 34017, discount: 0, addedAt: Date.now() },
+                { id: 'tv5', category: 'TV', modelName: '50U8400FULXL', basePrice: 36425, mrp: 36425, discount: 0, addedAt: Date.now() },
+                { id: 'tv6', category: 'TV', modelName: '50U8600FULXL', basePrice: 37227, mrp: 37227, discount: 0, addedAt: Date.now() },
+                { id: 'tv7', category: 'TV', modelName: '55U8100FULXL', basePrice: 39628, mrp: 39628, discount: 0, addedAt: Date.now() },
+                { id: 'tv8', category: 'TV', modelName: '55U8400FULXL', basePrice: 42103, mrp: 42103, discount: 0, addedAt: Date.now() },
+                { id: 'tv9', category: 'TV', modelName: '55U8600FULXL', basePrice: 42864, mrp: 42864, discount: 0, addedAt: Date.now() },
+                { id: 'tv10', category: 'TV', modelName: '55Q8FAAULXL', basePrice: 54201, mrp: 54201, discount: 0, addedAt: Date.now() },
+                { id: 'tv11', category: 'TV', modelName: '55QN70FAULXL', basePrice: 68100, mrp: 68100, discount: 0, addedAt: Date.now() },
+                { id: 'tv12', category: 'TV', modelName: '55QN85FAULXL', basePrice: 81302, mrp: 81302, discount: 0, addedAt: Date.now() },
+                { id: 'tv13', category: 'TV', modelName: '55QN90FAULXL', basePrice: 102759, mrp: 102759, discount: 0, addedAt: Date.now() },
+                { id: 'tv14', category: 'TV', modelName: '65U8100FULXL', basePrice: 55446, mrp: 55446, discount: 0, addedAt: Date.now() },
+                { id: 'tv15', category: 'TV', modelName: '65U8400FULXL', basePrice: 59466, mrp: 59466, discount: 0, addedAt: Date.now() },
+                { id: 'tv16', category: 'TV', modelName: '65U8600FULXL', basePrice: 60265, mrp: 60265, discount: 0, addedAt: Date.now() },
+                { id: 'tv17', category: 'TV', modelName: '65Q8FAAULXL', basePrice: 81002, mrp: 81002, discount: 0, addedAt: Date.now() },
+                { id: 'tv18', category: 'TV', modelName: '65QN85FAULXL', basePrice: 130797, mrp: 130797, discount: 0, addedAt: Date.now() },
+                { id: 'tv19', category: 'TV', modelName: '65QN70FAULXL', basePrice: 94702, mrp: 94702, discount: 0, addedAt: Date.now() },
+                { id: 'tv20', category: 'TV', modelName: '65QN80FAULXL', basePrice: 118547, mrp: 118547, discount: 0, addedAt: Date.now() },
+                { id: 'tv21', category: 'TV', modelName: '65QN90FAULXL', basePrice: 145654, mrp: 145654, discount: 0, addedAt: Date.now() },
+                { id: 'tv22', category: 'TV', modelName: '65QN900FUXXL', basePrice: 207467, mrp: 207467, discount: 0, addedAt: Date.now() },
+                { id: 'tv23', category: 'TV', modelName: '75U8000FULXL', basePrice: 77977, mrp: 77977, discount: 0, addedAt: Date.now() },
+                { id: 'tv24', category: 'TV', modelName: '75U8000FUXXL', basePrice: 77977, mrp: 77977, discount: 0, addedAt: Date.now() },
+                { id: 'tv25', category: 'TV', modelName: '75U8300FUXXL', basePrice: 83020, mrp: 83020, discount: 0, addedAt: Date.now() },
+                { id: 'tv26', category: 'TV', modelName: '75U8300FULXL', basePrice: 83020, mrp: 83020, discount: 0, addedAt: Date.now() },
+                { id: 'tv27', category: 'TV', modelName: '75U8500FULXL', basePrice: 87702, mrp: 87702, discount: 0, addedAt: Date.now() },
+                { id: 'tv28', category: 'TV', modelName: '75U8500FUXXL', basePrice: 87702, mrp: 87702, discount: 0, addedAt: Date.now() },
+                { id: 'tv29', category: 'TV', modelName: '65Q7FAAULXL', basePrice: 71407, mrp: 71407, discount: 0, addedAt: Date.now() },
+                { id: 'tv30', category: 'TV', modelName: '55Q7FAAULXL', basePrice: 48455, mrp: 48455, discount: 0, addedAt: Date.now() },
+                // Washing Machine
+                { id: 'wm1', category: 'Washing Machine', modelName: 'WA80F08B3BTL', basePrice: 24253, mrp: 24253, discount: 0, addedAt: Date.now() },
+                { id: 'wm2', category: 'Washing Machine', modelName: 'WA80F08E2BTL', basePrice: 20841, mrp: 20841, discount: 0, addedAt: Date.now() },
+                { id: 'wm3', category: 'Washing Machine', modelName: 'WA80F08E2CTL', basePrice: 20841, mrp: 20841, discount: 0, addedAt: Date.now() },
+                { id: 'wm4', category: 'Washing Machine', modelName: 'WA80F08H2BTL', basePrice: 23253, mrp: 23253, discount: 0, addedAt: Date.now() },
+                { id: 'wm5', category: 'Washing Machine', modelName: 'WA80F08S2BTL', basePrice: 23819, mrp: 23819, discount: 0, addedAt: Date.now() },
+                { id: 'wm6', category: 'Washing Machine', modelName: 'WA80F08S2CTL', basePrice: 21266, mrp: 21266, discount: 0, addedAt: Date.now() },
+                { id: 'wm7', category: 'Washing Machine', modelName: 'WA80F10B3BTL', basePrice: 28436, mrp: 28436, discount: 0, addedAt: Date.now() },
+                { id: 'wm8', category: 'Washing Machine', modelName: 'WA80F10B3NTL', basePrice: 28018, mrp: 28018, discount: 0, addedAt: Date.now() },
+                { id: 'wm9', category: 'Washing Machine', modelName: 'WA80F10E2CTL', basePrice: 23835, mrp: 23835, discount: 0, addedAt: Date.now() },
+                { id: 'wm10', category: 'Washing Machine', modelName: 'WA80F10S2BTL', basePrice: 27599, mrp: 27599, discount: 0, addedAt: Date.now() },
+                { id: 'wm11', category: 'Washing Machine', modelName: 'WA80F10S2CTL', basePrice: 24755, mrp: 24755, discount: 0, addedAt: Date.now() },
+                { id: 'wm12', category: 'Washing Machine', modelName: 'WA80F12S5CTL', basePrice: 34351, mrp: 34351, discount: 0, addedAt: Date.now() },
+                { id: 'wm13', category: 'Washing Machine', modelName: 'WA80F14B6BTL', basePrice: 40483, mrp: 40483, discount: 0, addedAt: Date.now() },
+                // Refrigerator
+                { id: 'ref1', category: 'Refrigerator', modelName: 'RT34HG5A42BXHL', basePrice: 39381, mrp: 39381, discount: 0, addedAt: Date.now() },
+                { id: 'ref2', category: 'Refrigerator', modelName: 'RT34HG5A42S8HL', basePrice: 38467, mrp: 38467, discount: 0, addedAt: Date.now() },
+                { id: 'ref3', category: 'Refrigerator', modelName: 'RT34HG5A43B1HL', basePrice: 41459, mrp: 41459, discount: 0, addedAt: Date.now() },
+                { id: 'ref4', category: 'Refrigerator', modelName: 'RT40H28U2FHL', basePrice: 28498, mrp: 28498, discount: 0, addedAt: Date.now() },
+                { id: 'ref5', category: 'Refrigerator', modelName: 'RT40H28U2PBHL', basePrice: 28832, mrp: 28832, discount: 0, addedAt: Date.now() },
+                { id: 'ref6', category: 'Refrigerator', modelName: 'RT40H28U2PHL', basePrice: 27901, mrp: 27901, discount: 0, addedAt: Date.now() },
+                { id: 'ref7', category: 'Refrigerator', modelName: 'RT40H28W1QNL', basePrice: 24835, mrp: 24835, discount: 0, addedAt: Date.now() },
+                { id: 'ref8', category: 'Refrigerator', modelName: 'RT40H28W2PNL', basePrice: 25887, mrp: 25887, discount: 0, addedAt: Date.now() },
+                { id: 'ref9', category: 'Refrigerator', modelName: 'RT40H28W3KHL', basePrice: 28660, mrp: 28660, discount: 0, addedAt: Date.now() },
+                { id: 'ref10', category: 'Refrigerator', modelName: 'RT40H30U2BBHL', basePrice: 32027, mrp: 32027, discount: 0, addedAt: Date.now() },
+                { id: 'ref11', category: 'Refrigerator', modelName: 'RT40H30U2BRHL', basePrice: 32027, mrp: 32027, discount: 0, addedAt: Date.now() },
+                { id: 'ref12', category: 'Refrigerator', modelName: 'RT40H30U2KHL', basePrice: 31336, mrp: 31336, discount: 0, addedAt: Date.now() },
+                { id: 'ref13', category: 'Refrigerator', modelName: 'RT40H30U2PHL', basePrice: 30547, mrp: 30547, discount: 0, addedAt: Date.now() },
+                { id: 'ref14', category: 'Refrigerator', modelName: 'RT40H30U3PHL', basePrice: 33063, mrp: 33063, discount: 0, addedAt: Date.now() },
+                { id: 'ref15', category: 'Refrigerator', modelName: 'RT40H30W2KHL', basePrice: 28832, mrp: 28832, discount: 0, addedAt: Date.now() },
+                { id: 'ref16', category: 'Refrigerator', modelName: 'RT40H30W2PHL', basePrice: 28242, mrp: 28242, discount: 0, addedAt: Date.now() },
+                { id: 'ref17', category: 'Refrigerator', modelName: 'RT41HB6A4222HL', basePrice: 48771, mrp: 48771, discount: 0, addedAt: Date.now() },
+                { id: 'ref18', category: 'Refrigerator', modelName: 'RT41HG6A22S8HL', basePrice: 45697, mrp: 45697, discount: 0, addedAt: Date.now() },
+                { id: 'ref19', category: 'Refrigerator', modelName: 'RT41HG6A42B1HL', basePrice: 46278, mrp: 46278, discount: 0, addedAt: Date.now() },
+                { id: 'ref20', category: 'Refrigerator', modelName: 'RT41HG6C42S8HL', basePrice: 44035, mrp: 44035, discount: 0, addedAt: Date.now() },
+                { id: 'ref21', category: 'Refrigerator', modelName: 'RT45HB6A4222HL', basePrice: 51763, mrp: 51763, discount: 0, addedAt: Date.now() },
+                { id: 'ref22', category: 'Refrigerator', modelName: 'RT45HG6A22SLHL', basePrice: 48854, mrp: 48854, discount: 0, addedAt: Date.now() },
+                { id: 'ref23', category: 'Refrigerator', modelName: 'RT45HG6A43BXHL', basePrice: 50932, mrp: 50932, discount: 0, addedAt: Date.now() },
+                { id: 'ref24', category: 'Refrigerator', modelName: 'RT56HG7A61B1TL', basePrice: 69008, mrp: 69008, discount: 0, addedAt: Date.now() },
+                { id: 'ref25', category: 'Refrigerator', modelName: 'RT56HG7A61SLTL', basePrice: 67731, mrp: 67731, discount: 0, addedAt: Date.now() },
+                { id: 'ref26', category: 'Refrigerator', modelName: 'RT80H28U2FHL', basePrice: 29955, mrp: 29955, discount: 0, addedAt: Date.now() },
+                { id: 'ref27', category: 'Refrigerator', modelName: 'RT80H30U2THL', basePrice: 32632, mrp: 32632, discount: 0, addedAt: Date.now() },
+                { id: 'ref28', category: 'Refrigerator', modelName: 'RT80H51C2BHL', basePrice: 57519, mrp: 57519, discount: 0, addedAt: Date.now() },
+                { id: 'ref29', category: 'Refrigerator', modelName: 'RT80H51C2FHL', basePrice: 54966, mrp: 54966, discount: 0, addedAt: Date.now() },
+                { id: 'ref30', category: 'Refrigerator', modelName: 'RT80H51C2SHL', basePrice: 54115, mrp: 54115, discount: 0, addedAt: Date.now() },
+                { id: 'ref31', category: 'Refrigerator', modelName: 'RT80H51C3BHL', basePrice: 60072, mrp: 60072, discount: 0, addedAt: Date.now() },
+        ];
+        // Clear old localStorage and always use fresh catalogue data
+        localStorage.removeItem('samsung-products');
+
+        function formatCurrency(num) {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                maximumFractionDigits: 0
+            }).format(num);
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            const isSuccess = type === 'success';
+            
+            toast.className = `transform transition-all duration-400 translate-y-10 opacity-0 bg-white border ${isSuccess ? 'border-emerald-200' : 'border-red-200'} rounded-2xl shadow-xl p-4 flex items-center gap-3.5 pointer-events-auto min-w-[300px] max-w-sm`;
+            
+            const icon = isSuccess 
+                ? '<div class="bg-emerald-100 text-emerald-600 rounded-full p-1.5 shadow-sm"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>'
+                : '<div class="bg-red-100 text-red-600 rounded-full p-1.5 shadow-sm"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.3-4.3"/><circle cx="11" cy="11" r="8"/></svg></div>';
+                
+            toast.innerHTML = `
+                ${icon}
+                <p class="text-sm font-bold text-slate-800 tracking-tight">${message}</p>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Animate in
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    toast.classList.remove('translate-y-10', 'opacity-0');
+                });
+            });
+            
+            // Remove after 3s
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-x-10');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        function updateTableHeaders() {
+            if (currentMode === 'store') {
+                tableHeader.innerHTML = `
+                    <th class="px-6 py-4 rounded-tl-xl font-semibold text-slate-700 text-sm text-left">Category</th>
+                    <th class="px-6 py-4 font-semibold text-slate-700 text-sm text-left">Model Name</th>
+                    <th class="px-6 py-4 font-semibold text-slate-700 text-sm text-center">Base Price</th>
+                    <th class="px-6 py-4 font-semibold text-slate-700 text-sm text-center"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-[10px] mr-1 border border-blue-200">+8%</span> Dealer Price</th>
+                    <th class="px-6 py-4 font-semibold text-slate-700 text-sm text-center"><span class="bg-orange-100 text-orange-800 px-2 py-0.5 rounded text-[10px] mr-1 border border-orange-200">+10%</span> Dealer Price</th>
+                    <th class="px-6 py-4 w-32 no-print rounded-tr-xl text-center">Actions</th>
+                `;
+            } else {
+                tableHeader.innerHTML = `
+                    <th class="px-6 py-4 rounded-tl-xl font-semibold text-slate-700 text-sm text-left">Category</th>
+                    <th class="px-6 py-4 font-semibold text-slate-700 text-sm text-left">Model Name</th>
+                    <th class="px-6 py-4 font-semibold text-slate-700 text-sm text-center">MRP Price</th>
+                    <th class="px-6 py-4 font-semibold text-slate-700 text-sm text-center">Discount<br><span class="text-red-600 text-[10px]">(Red: Built-in %)</span></th>
+                    <th class="px-6 py-4 font-semibold text-slate-700 text-sm text-center text-samsung-blue rounded-tr-xl">Final Offer Price</th>
+                `;
+            }
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            
+            if (mode === 'store') {
+                storePriceBtn.className = 'active-tab flex-1 lg:flex-none px-6 md:px-8 py-2.5 rounded-lg font-medium transition-all text-sm flex items-center justify-center gap-2';
+                storePriceBtn.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+                customerPriceBtn.className = 'inactive-tab flex-1 lg:flex-none px-6 md:px-8 py-2.5 rounded-lg font-medium transition-all text-sm flex items-center justify-center gap-2';
+                customerPriceBtn.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+            } else {
+                customerPriceBtn.className = 'active-tab flex-1 lg:flex-none px-6 md:px-8 py-2.5 rounded-lg font-medium transition-all text-sm flex items-center justify-center gap-2';
+                customerPriceBtn.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+                storePriceBtn.className = 'inactive-tab flex-1 lg:flex-none px-6 md:px-8 py-2.5 rounded-lg font-medium transition-all text-sm flex items-center justify-center gap-2';
+                storePriceBtn.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+            }
+            
+            updateTableHeaders();
+            render();
+        }
+
+        function save() {
+            localStorage.setItem('samsung-products', JSON.stringify(products));
+            render();
+        }
+
+        function render() {
+            const query = searchInput.value.toLowerCase();
+            const filter = activeCategory;
+
+            // Sort products by newest first
+            const sortedProducts = [...products].sort((a, b) => b.addedAt - a.addedAt);
+
+            const filtered = sortedProducts.filter(p => {
+                const matchesSearch = p.modelName.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+                const matchesFilter = filter === 'All' || p.category === filter;
+                return matchesSearch && matchesFilter;
+            });
+
+            productList.innerHTML = '';
+            
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+            } else {
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
+
+                filtered.forEach(p => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-slate-50/80 transition-colors group';
+
+                    // Display category as plain text (not a badge)
+                    const categoryText = `<span class="font-semibold text-slate-900 text-sm" style="font-family: 'Plus Jakarta Sans', sans-serif;">${p.category}</span>`;
+
+                    if (currentMode === 'store') {
+                        const p8 = p.basePrice * 1.08;
+                        const p10 = p.basePrice * 1.10;
+
+                        tr.innerHTML = `
+                            <td class="px-6 py-4 font-semibold text-slate-900 text-sm" data-label="Category" style="font-family: 'Plus Jakarta Sans', sans-serif;">${categoryText}</td>
+                            <td class="px-6 py-4 font-semibold text-slate-900 text-sm" data-label="Model Name" style="font-family: 'Plus Jakarta Sans', sans-serif;">${p.modelName}</td>
+                            <td class="px-6 py-4 text-center tabular-nums base-price-text text-slate-700" data-label="Base Price">${formatCurrency(p.basePrice)}</td>
+                            <td class="px-6 py-4 text-center tabular-nums price-value final-price-text text-blue-700 font-semibold" data-label="+8% Dealer Price">${formatCurrency(p8)}</td>
+                            <td class="px-6 py-4 text-center tabular-nums price-value final-price-text text-orange-600 font-semibold" data-label="+10% Dealer Price">${formatCurrency(p10)}</td>
+                            <td class="px-6 py-4 text-center no-print flex items-center justify-center gap-2" data-label="Actions">
+                                <button onclick="toggleDiscountInput('${p.id}')" class="bg-white border border-slate-200 hover:border-green-400 hover:bg-green-50 hover:text-green-700 text-slate-600 px-2 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm flex items-center gap-1 active:scale-95" title="Set Discount">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+                                    ${p.discount > 0 ? p.discount + '%' : '%'}
+                                </button>
+                                <button onclick="editProduct('${p.id}')" title="Edit Product" class="text-slate-400 hover:text-blue-600 hover:bg-blue-50 p-1.5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-blue-200 active:scale-95">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                </button>
+                                <button onclick="deleteProduct('${p.id}')" title="Delete Product" class="text-slate-400 hover:text-red-600 hover:bg-red-50 p-1.5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-red-200 active:scale-95">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                                </button>
+                            </td>
+                        `;
+                    } else {
+                        // Customer mode
+                        const mrp = p.mrp || (p.basePrice * 1.10);
+                        const extraDiscount = p.discount || 0;
+                        
+                        // Base = 10% dealer price
+                        const p10 = p.basePrice * 1.10;
+                        
+                        // Built-in discount (MRP vs 10% price)
+                        const builtInDiscountAmount = mrp - p10;
+                        const builtInDiscountPercent = ((builtInDiscountAmount / mrp) * 100).toFixed(1);
+                        
+                        // Final price = 10% dealer price minus extra discount %
+                        const finalPrice = p10 * (1 - extraDiscount / 100);
+                        
+                        // Built-in discount display (RED)
+                        const builtInDisplay = builtInDiscountAmount > 0
+                            ? `<span class="text-red-600 font-semibold text-sm">${builtInDiscountPercent}%</span><br><span class="text-red-600 text-xs">${formatCurrency(builtInDiscountAmount)}</span>`
+                            : `<span class="text-slate-400 text-xs">—</span>`;
+
+                        // Extra discount badge next to model name
+                        const extraBadge = '';
+
+                        tr.innerHTML = `
+                            <td class="px-6 py-4 font-semibold text-slate-900 text-sm" data-label="Category" style="font-family: 'Plus Jakarta Sans', sans-serif;">${categoryText}</td>
+                            <td class="px-6 py-4 font-semibold text-slate-900 text-sm" data-label="Model Name" style="font-family: 'Plus Jakarta Sans', sans-serif;">${p.modelName}${extraBadge}</td>
+                            <td class="px-6 py-4 text-center tabular-nums price-value final-price-text text-slate-900 font-semibold" data-label="MRP Price">${formatCurrency(mrp)}</td>
+                            <td class="px-6 py-4 text-center" data-label="Discount" style="font-family: 'Plus Jakarta Sans', sans-serif;">${builtInDisplay}</td>
+                            <td class="px-6 py-4 text-center tabular-nums price-value final-price-text text-samsung-blue font-semibold" data-label="Final Offer Price">${formatCurrency(finalPrice)}</td>
+                        `;
+                    }
+
+                    productList.appendChild(tr);
+                });
+            }
+        }
+
+        window.editProduct = function(id) {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                // Show the add/edit form panel
+                document.getElementById('add-product-section').classList.remove('hidden');
+
+                // Populate form with product data
+                document.getElementById('category').value = product.category;
+                document.getElementById('model-name').value = product.modelName;
+                document.getElementById('base-price').value = product.basePrice;
+                document.getElementById('mrp-price').value = product.mrp || product.basePrice;
+                
+                // Store the ID being edited
+                currentEditId = id;
+                
+                // Change button text
+                const submitBtn = document.querySelector('button[type="submit"]');
+                submitBtn.textContent = 'Update Item';
+                submitBtn.className = 'w-full samsung-blue text-white py-2.5 px-6 rounded-xl hover:bg-[#0f1f80] active:scale-[0.98] transition-all shadow-sm flex justify-center items-center gap-2 border border-[#0f1f80]';
+                submitBtn.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+                submitBtn.style.fontWeight = "500";
+                
+                // Scroll to form
+                document.getElementById('product-form').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('model-name').focus();
+            }
+        };
+
+        window.deleteProduct = function(id) {
+            if (confirm('Remove this product from inventory?')) {
+                products = products.filter(p => p.id !== id);
+                currentEditId = null;
+                save();
+                showToast('Product removed');
+            }
+        };
+
+        window.updateDiscount = function(id, value) {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                product.discount = parseFloat(value) || 0;
+                save(); // save calls render
+                if (product.discount > 0) {
+                    showToast(`${product.discount}% discount applied to ${product.modelName}`);
+                } else {
+                    showToast(`Discount removed from ${product.modelName}`);
+                }
+            }
+        };
+
+        let currentDiscountProductId = null;
+
+        window.toggleDiscountInput = function(id) {
+            currentDiscountProductId = id;
+            const product = products.find(p => p.id === id);
+            
+            document.getElementById('discount-modal-model').textContent = product.modelName;
+            discountInput.value = product.discount || '';
+            
+            // Show modal with animation
+            modal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before animating opacity
+            setTimeout(() => {
+                modal.firstElementChild.nextElementSibling.classList.add('modal-enter-active');
+            }, 10);
+            
+            discountInput.focus();
+            discountInput.select();
+        };
+
+        window.confirmDiscount = function() {
+            let discountValue = parseFloat(discountInput.value) || 0;
+            if (discountValue < 0) discountValue = 0;
+            if (discountValue > 100) discountValue = 100;
+            
+            updateDiscount(currentDiscountProductId, discountValue);
+            closeModal();
+        };
+
+        window.cancelDiscount = function() {
+            closeModal();
+        };
+        
+        function closeModal() {
+            const modalContent = modal.firstElementChild.nextElementSibling;
+            modalContent.classList.remove('modal-enter-active');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200); // match CSS transition duration
+        }
+
+        // Close modal on outside click
+        modalBackdrop.addEventListener('click', closeModal);
+
+        // Close modal on Escape, confirm on Enter
+        discountInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                confirmDiscount();
+            }
+            if (e.key === 'Escape') {
+                cancelDiscount();
+            }
+        });
+
+        storePriceBtn.addEventListener('click', () => switchMode('store'));
+        customerPriceBtn.addEventListener('click', () => switchMode('customer'));
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const categorySelect = document.getElementById('category');
+            const modelNameInput = document.getElementById('model-name');
+            const basePriceInput = document.getElementById('base-price');
+            const mrpPriceInput = document.getElementById('mrp-price');
+            
+            const category = categorySelect.value;
+            const modelName = modelNameInput.value;
+            const basePrice = basePriceInput.value;
+            const mrpPrice = mrpPriceInput.value;
+            
+            if (!category) {
+                showToast('Please select a category', 'error');
+                categorySelect.focus();
+                return;
+            }
+            if (!modelName.trim()) {
+                showToast('Please enter a model name', 'error');
+                modelNameInput.focus();
+                return;
+            }
+            if (!basePrice || parseFloat(basePrice) <= 0) {
+                showToast('Please enter a valid base price', 'error');
+                basePriceInput.focus();
+                return;
+            }
+            if (!mrpPrice || parseFloat(mrpPrice) <= 0) {
+                showToast('Please enter a valid MRP price', 'error');
+                mrpPriceInput.focus();
+                return;
+            }
+            
+            if (currentEditId) {
+                // Update existing product
+                const product = products.find(p => p.id === currentEditId);
+                if (product) {
+                    product.category = category;
+                    product.modelName = modelName.trim().toUpperCase();
+                    product.basePrice = parseFloat(basePrice);
+                    product.mrp = parseFloat(mrpPrice);
+                    
+                    currentEditId = null;
+
+                    // Reset button
+                    const submitBtn = document.querySelector('button[type="submit"]');
+                    submitBtn.textContent = 'Add Item';
+
+                    // Reset form
+                    modelNameInput.value = '';
+                    basePriceInput.value = '';
+                    mrpPriceInput.value = '';
+                    categorySelect.value = '';
+
+                    // Close the form panel
+                    document.getElementById('add-product-section').classList.add('hidden');
+
+                    save();
+                    showToast('Product updated successfully!');
+                    modelNameInput.focus();
+                    return;
+                }
+            } else {
+                // Add new product
+                const newProduct = {
+                    id: Date.now().toString(),
+                    category: category,
+                    modelName: modelName.trim().toUpperCase(),
+                    basePrice: parseFloat(basePrice),
+                    mrp: parseFloat(mrpPrice),
+                    discount: 0,
+                    addedAt: Date.now()
+                };
+                
+                products.unshift(newProduct);
+                showToast('Product added successfully!');
+                // Close the form after adding
+                document.getElementById('add-product-section').classList.add('hidden');
+            }
+            
+            // Reset form
+            modelNameInput.value = '';
+            basePriceInput.value = '';
+            mrpPriceInput.value = '';
+            categorySelect.value = '';
+            // Reset button
+            const submitBtn = document.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Add Item';
+            
+            save();
+            modelNameInput.focus();
+        });
+
+        // Toggle Add Item form
+        window.toggleAddForm = function() {
+            const section = document.getElementById('add-product-section');
+            const isHidden = section.classList.contains('hidden');
+            section.classList.toggle('hidden');
+            if (isHidden) {
+                document.getElementById('category').focus();
+            }
+        };
+
+        // Search and filter events
+        searchInput.addEventListener('input', render);
+
+        // Initialize headers and render
+        updateTableHeaders();
+        render();
+    </script>
+</body>
+</html>
