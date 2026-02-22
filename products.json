@@ -1,5 +1,14 @@
 [
   {
+    "id": "1771780477374",
+    "category": "AC",
+    "modelName": "QA55LS03BAKXXL",
+    "basePrice": 5200,
+    "mrp": 1,
+    "discount": 0,
+    "addedAt": 1771780477374
+  },
+  {
     "id": "tv1",
     "category": "TV",
     "modelName": "43U8100FULXL",
